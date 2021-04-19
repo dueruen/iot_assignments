@@ -28,10 +28,10 @@ class OutputLogger extends Logger {
         }
     }
 
-    @Override
-    protected void header (String[] entries) throws IOException {
-        writer.write("# diff"+System.lineSeparator());
-    }
+    // @Override
+    // protected void header (String[] entries) throws IOException {
+    //     writer.write("# diff"+System.lineSeparator());
+    // }
 
     @Override
     protected void log (String line) throws IOException {
@@ -42,6 +42,7 @@ class OutputLogger extends Logger {
 
         long diff = System.currentTimeMillis() - current;
 
-        writer.write(diff+System.lineSeparator()); //+sep+line+System.lineSeparator()
+        //writer.write(diff+System.lineSeparator()); //+sep+line+System.lineSeparator()
+        writer.write(diff+sep+line+System.lineSeparator()); //+sep+line+System.lineSeparator()
     }
 }
