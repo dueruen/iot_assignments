@@ -4,7 +4,7 @@ TARGETS = \
 	ProcessLogger.class \
 	TestHarness.class \
 
-CP = -classpath ".:javasysmon-0.3.5.1.jar"
+CP = -classpath ".:javasysmon-0.3.5.1.jar:json-20140107.jar"
 
 all: ${TARGETS}
 
@@ -24,7 +24,7 @@ Logger.class: Logger.java
 	javac Logger.java
 
 OutputLogger.class: OutputLogger.java
-	javac OutputLogger.java
+	javac ${CP} OutputLogger.java
 
 ProcessLogger.class: ProcessLogger.java
 	javac ${CP} ProcessLogger.java
@@ -35,3 +35,5 @@ TestHarness.class: TestHarness.java
 TestHarness: ${TARGETS}
 	java ${CP} TestHarness run42 chromium-browser
 
+TestHarness.client: ${TARGETS}
+	java ${CP} TestHarness sub_func "mosquitto_sub -v -t "func/+/+""
